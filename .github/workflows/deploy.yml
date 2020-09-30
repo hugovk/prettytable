@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    if: github.repository == 'jazzband/prettytable'
+    if: github.repository == 'hugovk/prettytable'
     runs-on: ubuntu-18.04
 
     steps:
