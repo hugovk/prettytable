@@ -8,6 +8,8 @@
 [![codecov](https://codecov.io/gh/jazzband/prettytable/branch/master/graph/badge.svg)](https://codecov.io/gh/jazzband/prettytable)
 [![Code style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
+<!-- usage-start -->
+
 ## Installation
 
 Install via pip:
@@ -652,3 +654,5 @@ changed lines.
 python -m pip install black
 black prettytable*.py
 ```
+
+<!-- usage-end -->

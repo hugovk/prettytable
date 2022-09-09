@@ -1,0 +1,3 @@
+# PrettyTable
+
+::: prettytable.PrettyTable
