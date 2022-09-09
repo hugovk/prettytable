@@ -2,8 +2,8 @@
 
 Welcome to the PrettyTable API reference.
 
-* [PrettyTable](prettytable)
-* [ColorTable](colortable)
+- [PrettyTable](prettytable)
+- [ColorTable](colortable)
 
 {%
    include-markdown "../README.md"
