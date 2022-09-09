@@ -890,10 +890,9 @@ class PrettyTable:
 
     @property
     def vrules(self):
-        """Controls printing of vertical rules between columns
-
-        Arguments:
-            vrules: vertical rules style.  Allowed values: FRAME, ALL, NONE"""
+        """Vertical rules style, controls printing of vertical rules between columns.
+        Allowed values: `FRAME`, `ALL`, `NONE`.
+        """
         return self._vrules
 
     @vrules.setter
@@ -903,10 +902,7 @@ class PrettyTable:
 
     @property
     def int_format(self):
-        """Controls formatting of integer data
-        Arguments:
-            int_format: integer format string
-        """
+        """Integer format string, controls formatting of integer data."""
         return self._int_format
 
     @int_format.setter
@@ -1220,7 +1216,7 @@ class PrettyTable:
     @property
     def attributes(self):
         """A dictionary of HTML attribute name/value pairs to be included in the
-        <table> tag when printing HTML
+        `<table>` tag when printing HTML
 
         Arguments:
             attributes: dictionary of attributes
@@ -2054,10 +2050,10 @@ class PrettyTable:
             sortby: name of field to sort rows by
             sort_key: sorting key function, applied to data points before sorting
             attributes: dictionary of name/value pairs to include as HTML attributes in
-                the <table> tag
+                the `<table>` tag
             format: Controls whether or not HTML tables are formatted to match
-                styling options (True or False)
-            xhtml: print <br/> tags if True, <br> tags if False
+                styling options (`True` or `False`)
+            xhtml: print `<br/>` tags if `True`, `<br>` tags if `False`
         """
         options = self._get_options(kwargs)
 
@@ -2442,9 +2438,7 @@ class TableHandler(HTMLParser):
         self.last_content += data
 
     def generate_table(self, rows):
-        """
-        Generates from a list of rows a PrettyTable object.
-        """
+        """Generates from a list of rows a PrettyTable object."""
         table = PrettyTable(**self.kwargs)
         for row in self.rows:
             if len(row[0]) < self.max_row_width:
@@ -2460,9 +2454,7 @@ class TableHandler(HTMLParser):
         return table
 
     def make_fields_unique(self, fields):
-        """
-        iterates over the row and make each field unique
-        """
+        """Iterates over the row and makes each field unique."""
         for i in range(0, len(fields)):
             for j in range(i + 1, len(fields)):
                 if fields[i] == fields[j]:
@@ -2470,22 +2462,20 @@ class TableHandler(HTMLParser):
 
 
 def from_html(html_code, **kwargs):
-    """
-    Generates a list of PrettyTables from a string of HTML code. Each <table> in
-    the HTML becomes one PrettyTable object.
-    """
+    """Generates a list of PrettyTables from a string of HTML code.
 
+    Each `<table>` in the HTML becomes one PrettyTable object.
+    """
     parser = TableHandler(**kwargs)
     parser.feed(html_code)
     return parser.tables
 
 
 def from_html_one(html_code, **kwargs):
-    """
-    Generates a PrettyTables from a string of HTML code which contains only a
-    single <table>
-    """
+    """Generates a single PrettyTable from HTML.
 
+    The HTML code can contain only a single `<table>`.
+    """
     tables = from_html(html_code, **kwargs)
     try:
         assert len(tables) == 1
