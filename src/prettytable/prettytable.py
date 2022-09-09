@@ -76,57 +76,58 @@ class PrettyTable:
         """Return a new PrettyTable instance
 
         Arguments:
-
-        encoding - Unicode encoding scheme used to decode any encoded input
-        title - optional table title
-        field_names - list or tuple of field names
-        fields - list or tuple of field names to include in displays
-        start - index of first data row to include in output
-        end - index of last data row to include in output PLUS ONE (list slice style)
-        header - print a header showing field names (True or False)
-        header_style - stylisation to apply to field names in header
-            ("cap", "title", "upper", "lower" or None)
-        border - print a border around the table (True or False)
-        preserve_internal_border - print a border inside the table even if
-            border is disabled (True or False)
-        hrules - controls printing of horizontal rules after rows.
-            Allowed values: FRAME, HEADER, ALL, NONE
-        vrules - controls printing of vertical rules between columns.
-            Allowed values: FRAME, ALL, NONE
-        int_format - controls formatting of integer data
-        float_format - controls formatting of floating point data
-        custom_format - controls formatting of any column using callable
-        min_table_width - minimum desired table width, in characters
-        max_table_width - maximum desired table width, in characters
-        min_width - minimum desired field width, in characters
-        max_width - maximum desired field width, in characters
-        padding_width - number of spaces on either side of column data
-            (only used if left and right paddings are None)
-        left_padding_width - number of spaces on left hand side of column data
-        right_padding_width - number of spaces on right hand side of column data
-        vertical_char - single character string used to draw vertical lines
-        horizontal_char - single character string used to draw horizontal lines
-        horizontal_align_char - single character string used to indicate alignment
-        junction_char - single character string used to draw line junctions
-        top_junction_char - single character string used to draw top line junctions
-        bottom_junction_char -
-            single character string used to draw bottom line junctions
-        right_junction_char - single character string used to draw right line junctions
-        left_junction_char - single character string used to draw left line junctions
-        top_right_junction_char -
-            single character string used to draw top-right line junctions
-        top_left_junction_char -
-            single character string used to draw top-left line junctions
-        bottom_right_junction_char -
-            single character string used to draw bottom-right line junctions
-        bottom_left_junction_char -
-            single character string used to draw bottom-left line junctions
-        sortby - name of field to sort rows by
-        sort_key - sorting key function, applied to data points before sorting
-        align - default align for each column (None, "l", "c" or "r")
-        valign - default valign for each row (None, "t", "m" or "b")
-        reversesort - True or False to sort in descending or ascending order
-        oldsortslice - Slice rows before sorting in the "old style" """
+            encoding: Unicode encoding scheme used to decode any encoded input
+            title: optional table title
+            field_names: list or tuple of field names
+            fields: list or tuple of field names to include in displays
+            start: index of first data row to include in output
+            end: index of last data row to include in output PLUS ONE (list slice style)
+            header: print a header showing field names (True or False)
+            header_style: stylisation to apply to field names in header
+                ("cap", "title", "upper", "lower" or None)
+            border: print a border around the table (True or False)
+            preserve_internal_border: print a border inside the table even if
+                border is disabled (True or False)
+            hrules: controls printing of horizontal rules after rows.
+                Allowed values: FRAME, HEADER, ALL, NONE
+            vrules: controls printing of vertical rules between columns.
+                Allowed values: FRAME, ALL, NONE
+            int_format: controls formatting of integer data
+            float_format: controls formatting of floating point data
+            custom_format: controls formatting of any column using callable
+            min_table_width: minimum desired table width, in characters
+            max_table_width: maximum desired table width, in characters
+            min_width: minimum desired field width, in characters
+            max_width: maximum desired field width, in characters
+            padding_width: number of spaces on either side of column data
+                (only used if left and right paddings are None)
+            left_padding_width: number of spaces on left hand side of column data
+            right_padding_width: number of spaces on right hand side of column data
+            vertical_char: single character string used to draw vertical lines
+            horizontal_char: single character string used to draw horizontal lines
+            horizontal_align_char: single character string used to indicate alignment
+            junction_char: single character string used to draw line junctions
+            top_junction_char: single character string used to draw top line junctions
+            bottom_junction_char:
+                single character string used to draw bottom line junctions
+            right_junction_char:
+                single character string used to draw right line junctions
+            left_junction_char: single character string used to draw left line junctions
+            top_right_junction_char:
+                single character string used to draw top-right line junctions
+            top_left_junction_char:
+                single character string used to draw top-left line junctions
+            bottom_right_junction_char:
+                single character string used to draw bottom-right line junctions
+            bottom_left_junction_char:
+                single character string used to draw bottom-left line junctions
+            sortby: name of field to sort rows by
+            sort_key: sorting key function, applied to data points before sorting
+            align: default align for each column (None, "l", "c" or "r")
+            valign: default valign for each row (None, "t", "m" or "b")
+            reversesort: True or False to sort in descending or ascending order
+            oldsortslice: Slice rows before sorting in the "old style"
+        """
 
         self.encoding = kwargs.get("encoding", "UTF-8")
 
@@ -563,7 +564,7 @@ class PrettyTable:
 
     @property
     def xhtml(self):
-        """Print <br/> tags if True, <br> tags if False"""
+        """Print `<br/>` tags if `True`, `<br>` tags if `False`"""
         return self._xhtml
 
     @xhtml.setter
@@ -628,8 +629,8 @@ class PrettyTable:
     def align(self):
         """Controls alignment of fields
         Arguments:
-
-        align - alignment, one of "l", "c", or "r" """
+            align: alignment, one of "l", "c", or "r"
+        """
         return self._align
 
     @align.setter
@@ -652,8 +653,8 @@ class PrettyTable:
     def valign(self):
         """Controls vertical alignment of fields
         Arguments:
-
-        valign - vertical alignment, one of "t", "m", or "b" """
+            valign: vertical alignment, one of "t", "m", or "b"
+        """
         return self._valign
 
     @valign.setter
@@ -672,8 +673,8 @@ class PrettyTable:
     def max_width(self):
         """Controls maximum width of fields
         Arguments:
-
-        max_width - maximum width integer"""
+            max_width: maximum width integer
+        """
         return self._max_width
 
     @max_width.setter
@@ -689,8 +690,8 @@ class PrettyTable:
     def min_width(self):
         """Controls minimum width of fields
         Arguments:
-
-        min_width - minimum width integer"""
+            min_width: minimum width integer
+        """
         return self._min_width
 
     @min_width.setter
@@ -735,8 +736,8 @@ class PrettyTable:
         """Optional table title
 
         Arguments:
-
-        title - table title"""
+            title: table title
+        """
         return self._title
 
     @title.setter
@@ -748,8 +749,8 @@ class PrettyTable:
         """Start index of the range of rows to print
 
         Arguments:
-
-        start - index of first data row to include in output"""
+            start: index of first data row to include in output
+        """
         return self._start
 
     @start.setter
@@ -762,8 +763,8 @@ class PrettyTable:
         """End index of the range of rows to print
 
         Arguments:
-
-        end - index of last data row to include in output PLUS ONE (list slice style)"""
+            end: index of last data row to include in output PLUS ONE (list slice style)
+        """
         return self._end
 
     @end.setter
@@ -776,8 +777,8 @@ class PrettyTable:
         """Name of field by which to sort rows
 
         Arguments:
-
-        sortby - field name to sort by"""
+            sortby: field name to sort by
+        """
         return self._sortby
 
     @sortby.setter
@@ -790,9 +791,9 @@ class PrettyTable:
         """Controls direction of sorting (ascending vs descending)
 
         Arguments:
-
-        reveresort - set to True to sort by descending order, or False to sort by
-            ascending order"""
+            reveresort: set to True to sort by descending order, or False to sort by
+                ascending order
+        """
         return self._reversesort
 
     @reversesort.setter
@@ -805,9 +806,9 @@ class PrettyTable:
         """Sorting key function, applied to data points before sorting
 
         Arguments:
-
-        sort_key - a function which takes one argument and returns something to be
-        sorted"""
+            sort_key: a function which takes one argument and returns something to be
+                sorted
+        """
         return self._sort_key
 
     @sort_key.setter
@@ -820,8 +821,8 @@ class PrettyTable:
         """Controls printing of table header with field names
 
         Arguments:
-
-        header - print a header showing field names (True or False)"""
+            header: print a header showing field names (True or False)
+        """
         return self._header
 
     @header.setter
@@ -834,9 +835,9 @@ class PrettyTable:
         """Controls stylisation applied to field names in header
 
         Arguments:
-
-        header_style - stylisation to apply to field names in header
-            ("cap", "title", "upper", "lower" or None)"""
+            header_style: stylisation to apply to field names in header
+                ("cap", "title", "upper", "lower" or None)
+        """
         return self._header_style
 
     @header_style.setter
@@ -849,8 +850,8 @@ class PrettyTable:
         """Controls printing of border around table
 
         Arguments:
-
-        border - print a border around the table (True or False)"""
+            border: print a border around the table (True or False)
+        """
         return self._border
 
     @border.setter
@@ -863,9 +864,9 @@ class PrettyTable:
         """Controls printing of border inside table
 
         Arguments:
-
-        preserve_internal_border - print a border inside the table even if
-            border is disabled (True or False)"""
+            preserve_internal_border: print a border inside the table even if
+                border is disabled (True or False)
+        """
         return self._preserve_internal_border
 
     @preserve_internal_border.setter
@@ -878,8 +879,8 @@ class PrettyTable:
         """Controls printing of horizontal rules after rows
 
         Arguments:
-
-        hrules - horizontal rules style.  Allowed values: FRAME, ALL, HEADER, NONE"""
+            hrules: horizontal rules style.  Allowed values: FRAME, ALL, HEADER, NONE
+        """
         return self._hrules
 
     @hrules.setter
@@ -892,8 +893,7 @@ class PrettyTable:
         """Controls printing of vertical rules between columns
 
         Arguments:
-
-        vrules - vertical rules style.  Allowed values: FRAME, ALL, NONE"""
+            vrules: vertical rules style.  Allowed values: FRAME, ALL, NONE"""
         return self._vrules
 
     @vrules.setter
@@ -905,8 +905,8 @@ class PrettyTable:
     def int_format(self):
         """Controls formatting of integer data
         Arguments:
-
-        int_format - integer format string"""
+            int_format: integer format string
+        """
         return self._int_format
 
     @int_format.setter
@@ -922,8 +922,8 @@ class PrettyTable:
     def float_format(self):
         """Controls formatting of floating point data
         Arguments:
-
-        float_format - floating point format string"""
+            float_format: floating point format string
+        """
         return self._float_format
 
     @float_format.setter
@@ -939,8 +939,8 @@ class PrettyTable:
     def custom_format(self):
         """Controls formatting of any column using callable
         Arguments:
-
-        custom_format - Dictionary of field_name and callable"""
+            custom_format: Dictionary of field_name and callable
+        """
         return self._custom_format
 
     @custom_format.setter
@@ -965,8 +965,8 @@ class PrettyTable:
         """The number of empty spaces between a column's edge and its content
 
         Arguments:
-
-        padding_width - number of spaces, must be a positive integer"""
+            padding_width: number of spaces, must be a positive integer
+        """
         return self._padding_width
 
     @padding_width.setter
@@ -979,8 +979,8 @@ class PrettyTable:
         """The number of empty spaces between a column's left edge and its content
 
         Arguments:
-
-        left_padding - number of spaces, must be a positive integer"""
+            left_padding: number of spaces, must be a positive integer
+        """
         return self._left_padding_width
 
     @left_padding_width.setter
@@ -993,8 +993,8 @@ class PrettyTable:
         """The number of empty spaces between a column's right edge and its content
 
         Arguments:
-
-        right_padding - number of spaces, must be a positive integer"""
+            right_padding: number of spaces, must be a positive integer
+        """
         return self._right_padding_width
 
     @right_padding_width.setter
@@ -1007,8 +1007,7 @@ class PrettyTable:
         """The character used when printing table borders to draw vertical lines
 
         Arguments:
-
-        vertical_char - single character string used to draw vertical lines"""
+            vertical_char: single character string used to draw vertical lines"""
         return self._vertical_char
 
     @vertical_char.setter
@@ -1022,8 +1021,7 @@ class PrettyTable:
         """The character used when printing table borders to draw horizontal lines
 
         Arguments:
-
-        horizontal_char - single character string used to draw horizontal lines"""
+            horizontal_char: single character string used to draw horizontal lines"""
         return self._horizontal_char
 
     @horizontal_char.setter
@@ -1037,8 +1035,7 @@ class PrettyTable:
         """The character used to indicate column alignment in horizontal lines
 
         Arguments:
-
-        horizontal_align_char - single character string used to indicate alignment"""
+            horizontal_align_char: single character string used to indicate alignment"""
         return self._bottom_left_junction_char or self.junction_char
 
     @horizontal_align_char.setter
@@ -1052,8 +1049,7 @@ class PrettyTable:
         """The character used when printing table borders to draw line junctions
 
         Arguments:
-
-        junction_char - single character string used to draw line junctions"""
+            junction_char: single character string used to draw line junctions"""
         return self._junction_char
 
     @junction_char.setter
@@ -1067,8 +1063,8 @@ class PrettyTable:
         """The character used when printing table borders to draw top line junctions
 
         Arguments:
-
-        top_junction_char - single character string used to draw top line junctions"""
+            top_junction_char: single character string used to draw top line junctions
+        """
         return self._top_junction_char or self.junction_char
 
     @top_junction_char.setter
@@ -1082,9 +1078,9 @@ class PrettyTable:
         """The character used when printing table borders to draw bottom line junctions
 
         Arguments:
-
-        bottom_junction_char -
-            single character string used to draw bottom line junctions"""
+            bottom_junction_char:
+                single character string used to draw bottom line junctions
+        """
         return self._bottom_junction_char or self.junction_char
 
     @bottom_junction_char.setter
@@ -1098,9 +1094,9 @@ class PrettyTable:
         """The character used when printing table borders to draw right line junctions
 
         Arguments:
-
-        right_junction_char -
-            single character string used to draw right line junctions"""
+            right_junction_char:
+                single character string used to draw right line junctions
+        """
         return self._right_junction_char or self.junction_char
 
     @right_junction_char.setter
@@ -1114,8 +1110,8 @@ class PrettyTable:
         """The character used when printing table borders to draw left line junctions
 
         Arguments:
-
-        left_junction_char - single character string used to draw left line junctions"""
+            left_junction_char: single character string used to draw left line junctions
+        """
         return self._left_junction_char or self.junction_char
 
     @left_junction_char.setter
@@ -1130,9 +1126,9 @@ class PrettyTable:
         The character used when printing table borders to draw top-right line junctions
 
         Arguments:
-
-        top_right_junction_char -
-            single character string used to draw top-right line junctions"""
+            top_right_junction_char:
+                single character string used to draw top-right line junctions
+        """
         return self._top_right_junction_char or self.junction_char
 
     @top_right_junction_char.setter
@@ -1147,9 +1143,9 @@ class PrettyTable:
         The character used when printing table borders to draw top-left line junctions
 
         Arguments:
-
-        top_left_junction_char -
-            single character string used to draw top-left line junctions"""
+            top_left_junction_char:
+                single character string used to draw top-left line junctions
+        """
         return self._top_left_junction_char or self.junction_char
 
     @top_left_junction_char.setter
@@ -1164,9 +1160,9 @@ class PrettyTable:
            to draw bottom-right line junctions
 
         Arguments:
-
-        bottom_right_junction_char -
-            single character string used to draw bottom-right line junctions"""
+            bottom_right_junction_char:
+                single character string used to draw bottom-right line junctions
+        """
         return self._bottom_right_junction_char or self.junction_char
 
     @bottom_right_junction_char.setter
@@ -1181,9 +1177,9 @@ class PrettyTable:
            to draw bottom-left line junctions
 
         Arguments:
-
-        bottom_left_junction_char -
-            single character string used to draw bottom-left line junctions"""
+            bottom_left_junction_char:
+                single character string used to draw bottom-left line junctions
+        """
         return self._bottom_left_junction_char or self.junction_char
 
     @bottom_left_junction_char.setter
@@ -1194,11 +1190,11 @@ class PrettyTable:
 
     @property
     def format(self):
-        """Controls whether or not HTML tables are formatted to match styling options
+        """Controls whether HTML tables are formatted to match styling options
 
         Arguments:
-
-        format - True or False"""
+            format: `True` or `False`
+        """
         return self._format
 
     @format.setter
@@ -1208,12 +1204,12 @@ class PrettyTable:
 
     @property
     def print_empty(self):
-        """Controls whether or not empty tables produce a header and frame or just an
+        """Controls whether empty tables produce a header and frame or just an
         empty string
 
         Arguments:
-
-        print_empty - True or False"""
+            print_empty: `True` or `False`
+        """
         return self._print_empty
 
     @print_empty.setter
@@ -1227,8 +1223,8 @@ class PrettyTable:
         <table> tag when printing HTML
 
         Arguments:
-
-        attributes - dictionary of attributes"""
+            attributes: dictionary of attributes
+        """
         return self._attributes
 
     @attributes.setter
@@ -1386,25 +1382,22 @@ class PrettyTable:
     ##############################
 
     def add_rows(self, rows):
-
         """Add rows to the table
 
         Arguments:
-
-        rows - rows of data, should be an iterable of lists, each list with as many
-        elements as the table has fields"""
+            rows: rows of data, should be an iterable of lists, each list with as many
+                elements as the table has fields
+        """
         for row in rows:
             self.add_row(row)
 
     def add_row(self, row):
-
         """Add a row to the table
 
         Arguments:
-
-        row - row of data, should be a list with as many elements as the table
-        has fields"""
-
+            row: row of data, should be a list with as many elements as the table
+                has fields
+        """
         if self._field_names and len(row) != len(self._field_names):
             raise ValueError(
                 "Row has incorrect number of values, "
@@ -1415,13 +1408,11 @@ class PrettyTable:
         self._rows.append(list(row))
 
     def del_row(self, row_index):
-
         """Delete a row from the table
 
         Arguments:
-
-        row_index - The index of the row you want to delete.  Indexing starts at 0."""
-
+            row_index: The index of the row you want to delete.  Indexing starts at 0.
+        """
         if row_index > len(self._rows) - 1:
             raise IndexError(
                 f"Can't delete row at index {row_index}, "
@@ -1430,19 +1421,17 @@ class PrettyTable:
         del self._rows[row_index]
 
     def add_column(self, fieldname, column, align="c", valign="t"):
-
         """Add a column to the table.
 
         Arguments:
-
-        fieldname - name of the field to contain the new column of data
-        column - column of data, should be a list with as many elements as the
-        table has rows
-        align - desired alignment for this column - "l" for left, "c" for centre and
-            "r" for right
-        valign - desired vertical alignment for new columns - "t" for top,
-            "m" for middle and "b" for bottom"""
-
+            fieldname: name of the field to contain the new column of data
+            column: column of data, should be a list with as many elements as the
+            table has rows
+            align: desired alignment for this column - "l" for left, "c" for centre and
+                "r" for right
+            valign: desired vertical alignment for new columns - "t" for top,
+                "m" for middle and "b" for bottom
+        """
         if len(self._rows) in (0, len(column)):
             self._validate_align(align)
             self._validate_valign(valign)
@@ -1461,8 +1450,9 @@ class PrettyTable:
 
     def add_autoindex(self, fieldname="Index"):
         """Add an auto-incrementing index column to the table.
-        Arguments:
-        fieldname - name of the field to contain the new column of data"""
+        Args:
+            fieldname: name of the field to contain the new column of data
+        """
         self._field_names.insert(0, fieldname)
         self._align[fieldname] = self.align
         self._valign[fieldname] = self.valign
@@ -1470,13 +1460,11 @@ class PrettyTable:
             row.insert(0, i + 1)
 
     def del_column(self, fieldname):
-
         """Delete a column from the table
 
         Arguments:
-
-        fieldname - The field name of the column you want to delete."""
-
+            fieldname: The field name of the column you want to delete.
+        """
         if fieldname not in self._field_names:
             raise ValueError(
                 "Can't delete column %r which is not a field name of this table."
@@ -1602,9 +1590,8 @@ class PrettyTable:
         sorting.
 
         Arguments:
-
-        options - dictionary of option settings."""
-
+            options: dictionary of option settings.
+        """
         if options["oldsortslice"]:
             rows = copy.deepcopy(self._rows[options["start"] : options["end"]])
         else:
@@ -1640,54 +1627,54 @@ class PrettyTable:
     ##############################
 
     def get_string(self, **kwargs):
-
         """Return string representation of table in current state.
 
         Arguments:
 
-        title - optional table title
-        start - index of first data row to include in output
-        end - index of last data row to include in output PLUS ONE (list slice style)
-        fields - names of fields (columns) to include
-        header - print a header showing field names (True or False)
-        border - print a border around the table (True or False)
-        preserve_internal_border - print a border inside the table even if
-            border is disabled (True or False)
-        hrules - controls printing of horizontal rules after rows.
-            Allowed values: ALL, FRAME, HEADER, NONE
-        vrules - controls printing of vertical rules between columns.
-            Allowed values: FRAME, ALL, NONE
-        int_format - controls formatting of integer data
-        float_format - controls formatting of floating point data
-        custom_format - controls formatting of any column using callable
-        padding_width - number of spaces on either side of column data (only used if
-            left and right paddings are None)
-        left_padding_width - number of spaces on left hand side of column data
-        right_padding_width - number of spaces on right hand side of column data
-        vertical_char - single character string used to draw vertical lines
-        horizontal_char - single character string used to draw horizontal lines
-        horizontal_align_char - single character string used to indicate alignment
-        junction_char - single character string used to draw line junctions
-        junction_char - single character string used to draw line junctions
-        top_junction_char - single character string used to draw top line junctions
-        bottom_junction_char -
-            single character string used to draw bottom line junctions
-        right_junction_char - single character string used to draw right line junctions
-        left_junction_char - single character string used to draw left line junctions
-        top_right_junction_char -
-            single character string used to draw top-right line junctions
-        top_left_junction_char -
-            single character string used to draw top-left line junctions
-        bottom_right_junction_char -
-            single character string used to draw bottom-right line junctions
-        bottom_left_junction_char -
-            single character string used to draw bottom-left line junctions
-        sortby - name of field to sort rows by
-        sort_key - sorting key function, applied to data points before sorting
-        reversesort - True or False to sort in descending or ascending order
-        print empty - if True, stringify just the header for an empty table,
-            if False return an empty string"""
-
+            title: optional table title
+            start: index of first data row to include in output
+            end: index of last data row to include in output PLUS ONE (list slice style)
+            fields: names of fields (columns) to include
+            header: print a header showing field names (True or False)
+            border: print a border around the table (True or False)
+            preserve_internal_border: print a border inside the table even if
+                border is disabled (True or False)
+            hrules: controls printing of horizontal rules after rows.
+                Allowed values: ALL, FRAME, HEADER, NONE
+            vrules: controls printing of vertical rules between columns.
+                Allowed values: FRAME, ALL, NONE
+            int_format: controls formatting of integer data
+            float_format: controls formatting of floating point data
+            custom_format: controls formatting of any column using callable
+            padding_width: number of spaces on either side of column data (only used if
+                left and right paddings are None)
+            left_padding_width: number of spaces on left hand side of column data
+            right_padding_width: number of spaces on right hand side of column data
+            vertical_char: single character string used to draw vertical lines
+            horizontal_char: single character string used to draw horizontal lines
+            horizontal_align_char: single character string used to indicate alignment
+            junction_char: single character string used to draw line junctions
+            junction_char: single character string used to draw line junctions
+            top_junction_char: single character string used to draw top line junctions
+            bottom_junction_char:
+                single character string used to draw bottom line junctions
+            right_junction_char:
+                single character string used to draw right line junctions
+            left_junction_char: single character string used to draw left line junctions
+            top_right_junction_char:
+                single character string used to draw top-right line junctions
+            top_left_junction_char:
+                single character string used to draw top-left line junctions
+            bottom_right_junction_char:
+                single character string used to draw bottom-right line junctions
+            bottom_left_junction_char:
+                single character string used to draw bottom-left line junctions
+            sortby: name of field to sort rows by
+            sort_key: sorting key function, applied to data points before sorting
+            reversesort: True or False to sort in descending or ascending order
+            print empty: if True, stringify just the header for an empty table,
+                if False return an empty string
+        """
         options = self._get_options(kwargs)
 
         lines = []
@@ -2045,34 +2032,33 @@ class PrettyTable:
         state.
 
         Arguments:
-
-        title - optional table title
-        start - index of first data row to include in output
-        end - index of last data row to include in output PLUS ONE (list slice style)
-        fields - names of fields (columns) to include
-        header - print a header showing field names (True or False)
-        border - print a border around the table (True or False)
-        preserve_internal_border - print a border inside the table even if
-            border is disabled (True or False)
-        hrules - controls printing of horizontal rules after rows.
-            Allowed values: ALL, FRAME, HEADER, NONE
-        vrules - controls printing of vertical rules between columns.
-            Allowed values: FRAME, ALL, NONE
-        int_format - controls formatting of integer data
-        float_format - controls formatting of floating point data
-        custom_format - controls formatting of any column using callable
-        padding_width - number of spaces on either side of column data (only used if
-            left and right paddings are None)
-        left_padding_width - number of spaces on left hand side of column data
-        right_padding_width - number of spaces on right hand side of column data
-        sortby - name of field to sort rows by
-        sort_key - sorting key function, applied to data points before sorting
-        attributes - dictionary of name/value pairs to include as HTML attributes in the
-            <table> tag
-        format - Controls whether or not HTML tables are formatted to match
-            styling options (True or False)
-        xhtml - print <br/> tags if True, <br> tags if False"""
-
+            title: optional table title
+            start: index of first data row to include in output
+            end: index of last data row to include in output PLUS ONE (list slice style)
+            fields: names of fields (columns) to include
+            header: print a header showing field names (True or False)
+            border: print a border around the table (True or False)
+            preserve_internal_border: print a border inside the table even if
+                border is disabled (True or False)
+            hrules: controls printing of horizontal rules after rows.
+                Allowed values: ALL, FRAME, HEADER, NONE
+            vrules: controls printing of vertical rules between columns.
+                Allowed values: FRAME, ALL, NONE
+            int_format: controls formatting of integer data
+            float_format: controls formatting of floating point data
+            custom_format: controls formatting of any column using callable
+            padding_width: number of spaces on either side of column data (only used if
+                left and right paddings are None)
+            left_padding_width: number of spaces on left hand side of column data
+            right_padding_width: number of spaces on right hand side of column data
+            sortby: name of field to sort rows by
+            sort_key: sorting key function, applied to data points before sorting
+            attributes: dictionary of name/value pairs to include as HTML attributes in
+                the <table> tag
+            format: Controls whether or not HTML tables are formatted to match
+                styling options (True or False)
+            xhtml: print <br/> tags if True, <br> tags if False
+        """
         options = self._get_options(kwargs)
 
         if options["format"]:
@@ -2230,24 +2216,23 @@ class PrettyTable:
         state.
 
         Arguments:
-
-        start - index of first data row to include in output
-        end - index of last data row to include in output PLUS ONE (list slice style)
-        fields - names of fields (columns) to include
-        header - print a header showing field names (True or False)
-        border - print a border around the table (True or False)
-        preserve_internal_border - print a border inside the table even if
-            border is disabled (True or False)
-        hrules - controls printing of horizontal rules after rows.
-            Allowed values: ALL, FRAME, HEADER, NONE
-        vrules - controls printing of vertical rules between columns.
-            Allowed values: FRAME, ALL, NONE
-        int_format - controls formatting of integer data
-        float_format - controls formatting of floating point data
-        sortby - name of field to sort rows by
-        sort_key - sorting key function, applied to data points before sorting
-        format - Controls whether or not HTML tables are formatted to match
-            styling options (True or False)
+            start: index of first data row to include in output
+            end: index of last data row to include in output PLUS ONE (list slice style)
+            fields: names of fields (columns) to include
+            header: print a header showing field names (True or False)
+            border: print a border around the table (True or False)
+            preserve_internal_border: print a border inside the table even if
+                border is disabled (True or False)
+            hrules: controls printing of horizontal rules after rows.
+                Allowed values: ALL, FRAME, HEADER, NONE
+            vrules: controls printing of vertical rules between columns.
+                Allowed values: FRAME, ALL, NONE
+            int_format: controls formatting of integer data
+            float_format: controls formatting of floating point data
+            sortby: name of field to sort rows by
+            sort_key: sorting key function, applied to data points before sorting
+            format: Controls whether or not HTML tables are formatted to match
+                styling options (True or False)
         """
         options = self._get_options(kwargs)
 
