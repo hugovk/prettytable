@@ -136,6 +136,7 @@ class PrettyTable:
         # Data
         self._field_names: list[str] = []
         self._rows: list[list] = []
+        self._dividers: list[bool] = []
         self.align = {}
         self.valign = {}
         self.max_width = {}
@@ -297,7 +298,6 @@ class PrettyTable:
                 return (excess // 2) * " " + text + (excess // 2) * " "
 
     def __getattr__(self, name):
-
         if name == "rowcount":
             return len(self._rows)
         elif name == "colcount":
@@ -311,7 +311,6 @@ class PrettyTable:
             raise AttributeError(name)
 
     def __getitem__(self, index):
-
         new = PrettyTable()
         new.field_names = self.field_names
         for attr in self._options:
@@ -563,6 +562,10 @@ class PrettyTable:
     @property
     def rows(self) -> list[Any]:
         return self._rows[:]
+
+    @property
+    def dividers(self) -> list[bool]:
+        return self._dividers[:]
 
     @property
     def xhtml(self) -> bool:
@@ -1254,7 +1257,6 @@ class PrettyTable:
     ##############################
 
     def _get_options(self, kwargs):
-
         options = {}
         for option in self._options:
             if option in kwargs:
@@ -1269,7 +1271,6 @@ class PrettyTable:
     ##############################
 
     def set_style(self, style) -> None:
-
         if style == DEFAULT:
             self._set_default_style()
         elif style == MSWORD_FRIENDLY:
@@ -1305,7 +1306,6 @@ class PrettyTable:
         self._horizontal_align_char = ":"
 
     def _set_default_style(self):
-
         self.header = True
         self.border = True
         self._hrules = FRAME
@@ -1327,7 +1327,6 @@ class PrettyTable:
         self._bottom_left_junction_char = None
 
     def _set_msword_style(self):
-
         self.header = True
         self.border = True
         self._hrules = NONE
@@ -1337,7 +1336,6 @@ class PrettyTable:
         self.vertical_char = "|"
 
     def _set_columns_style(self):
-
         self.header = True
         self.border = False
         self.padding_width = 1
@@ -1371,7 +1369,6 @@ class PrettyTable:
         self.bottom_left_junction_char = "└"
 
     def _set_random_style(self):
-
         # Just for fun!
         self.header = random.choice((True, False))
         self.border = random.choice((True, False))
@@ -1389,7 +1386,6 @@ class PrettyTable:
     ##############################
 
     def add_rows(self, rows) -> None:
-
         """Add rows to the table
 
         Arguments:
@@ -1399,8 +1395,7 @@ class PrettyTable:
         for row in rows:
             self.add_row(row)
 
-    def add_row(self, row) -> None:
-
+    def add_row(self, row, *, divider=False) -> None:
         """Add a row to the table
 
         Arguments:
@@ -1416,9 +1411,9 @@ class PrettyTable:
         if not self._field_names:
             self.field_names = [f"Field {n + 1}" for n in range(0, len(row))]
         self._rows.append(list(row))
+        self._dividers.append(divider)
 
     def del_row(self, row_index) -> None:
-
         """Delete a row from the table
 
         Arguments:
@@ -1431,11 +1426,11 @@ class PrettyTable:
                 f"table only has {len(self._rows)} rows"
             )
         del self._rows[row_index]
+        del self._dividers[row_index]
 
     def add_column(
         self, fieldname, column, align: str = "c", valign: str = "t"
     ) -> None:
-
         """Add a column to the table.
 
         Arguments:
@@ -1457,6 +1452,7 @@ class PrettyTable:
             for i in range(0, len(column)):
                 if len(self._rows) < i + 1:
                     self._rows.append([])
+                    self._dividers.append(False)
                 self._rows[i].append(column[i])
         else:
             raise ValueError(
@@ -1475,7 +1471,6 @@ class PrettyTable:
             row.insert(0, i + 1)
 
     def del_column(self, fieldname) -> None:
-
         """Delete a column from the table
 
         Arguments:
@@ -1495,17 +1490,17 @@ class PrettyTable:
             del row[col_index]
 
     def clear_rows(self) -> None:
-
         """Delete all rows from the table but keep the current field names"""
 
         self._rows = []
+        self._dividers = []
 
     def clear(self) -> None:
-
         """Delete all rows and field names from the table, maintaining nothing but
         styling options"""
 
         self._rows = []
+        self._dividers = []
         self._field_names = []
         self._widths = []
 
@@ -1606,7 +1601,6 @@ class PrettyTable:
                 self._widths = widths
 
     def _get_padding_widths(self, options):
-
         if options["left_padding_width"] is not None:
             lpad = options["left_padding_width"]
         else:
@@ -1646,6 +1640,23 @@ class PrettyTable:
 
         return rows
 
+    def _get_dividers(self, options):
+        """Return only those dividers that should be printed, based on slicing.
+
+        Arguments:
+
+        options - dictionary of option settings."""
+
+        if options["oldsortslice"]:
+            dividers = copy.deepcopy(self._dividers[options["start"] : options["end"]])
+        else:
+            dividers = copy.deepcopy(self._dividers)
+
+        if options["sortby"]:
+            dividers = [False for divider in dividers]
+
+        return dividers
+
     def _format_row(self, row):
         return [
             self._format_value(field, value)
@@ -1660,7 +1671,6 @@ class PrettyTable:
     ##############################
 
     def get_string(self, **kwargs) -> str:
-
         """Return string representation of table in current state.
 
         Arguments:
@@ -1719,6 +1729,7 @@ class PrettyTable:
 
         # Get the rows we need to print, taking into account slicing, sorting, etc.
         rows = self._get_rows(options)
+        dividers = self._get_dividers(options)
 
         # Turn all data in all rows into Unicode, formatted as desired
         formatted_rows = self._format_rows(rows)
@@ -1743,8 +1754,10 @@ class PrettyTable:
                 )
 
         # Add rows
-        for row in formatted_rows[:-1]:
+        for row, divider in zip(formatted_rows[:-1], dividers[:-1]):
             lines.append(self._stringify_row(row, options, self._hrule))
+            if divider:
+                lines.append(self._stringify_hrule(options, where="bottom_"))
         if formatted_rows:
             lines.append(
                 self._stringify_row(
@@ -1767,7 +1780,6 @@ class PrettyTable:
         return "\n".join(lines)
 
     def _stringify_hrule(self, options, where=""):
-
         if not options["border"] and not options["preserve_internal_border"]:
             return ""
         lpad, rpad = self._get_padding_widths(options)
@@ -1807,7 +1819,6 @@ class PrettyTable:
         return "".join(bits)
 
     def _stringify_title(self, title, options):
-
         lines = []
         lpad, rpad = self._get_padding_widths(options)
         if options["border"]:
@@ -1831,7 +1842,6 @@ class PrettyTable:
         return "\n".join(lines)
 
     def _stringify_header(self, options):
-
         bits = []
         lpad, rpad = self._get_padding_widths(options)
         if options["border"]:
@@ -1854,7 +1864,7 @@ class PrettyTable:
                 bits.append(options["vertical_char"])
             else:
                 bits.append(" ")
-        for (field, width) in zip(self._field_names, self._widths):
+        for field, width in zip(self._field_names, self._widths):
             if options["fields"] and field not in options["fields"]:
                 continue
             if self._header_style == "cap":
@@ -1898,8 +1908,7 @@ class PrettyTable:
         return "".join(bits)
 
     def _stringify_row(self, row, options, hrule):
-
-        for (index, field, value, width) in zip(
+        for index, field, value, width in zip(
             range(0, len(row)), self._field_names, row, self._widths
         ):
             # Enforce max widths
@@ -1931,8 +1940,7 @@ class PrettyTable:
                 else:
                     bits[y].append(" ")
 
-        for (field, value, width) in zip(self._field_names, row, self._widths):
-
+        for field, value, width in zip(self._field_names, row, self._widths):
             valign = self._valign[field]
             lines = value.split("\n")
             d_height = row_height - len(lines)
@@ -1988,7 +1996,6 @@ class PrettyTable:
         return "\n".join(bits)
 
     def paginate(self, page_length: int = 58, line_break: str = "\f", **kwargs):
-
         pages = []
         kwargs["start"] = kwargs.get("start", 0)
         true_end = kwargs.get("end", self.rowcount)
@@ -2004,7 +2011,6 @@ class PrettyTable:
     # CSV STRING METHODS         #
     ##############################
     def get_csv_string(self, **kwargs) -> str:
-
         """Return string representation of CSV formatted table in the current state
 
         Keyword arguments are first interpreted as table formatting options, and
@@ -2032,7 +2038,6 @@ class PrettyTable:
     # JSON STRING METHODS        #
     ##############################
     def get_json_string(self, **kwargs) -> str:
-
         """Return string representation of JSON formatted table in the current state
 
         Keyword arguments are first interpreted as table formatting options, and
@@ -2103,7 +2108,6 @@ class PrettyTable:
         return string
 
     def _get_simple_html_string(self, options):
-
         lines = []
         if options["xhtml"]:
             linebreak = "<br/>"
@@ -2154,7 +2158,6 @@ class PrettyTable:
         return "\n".join(lines)
 
     def _get_formatted_html_string(self, options):
-
         lines = []
         lpad, rpad = self._get_padding_widths(options)
         if options["xhtml"]:
@@ -2448,7 +2451,7 @@ class TableHandler(HTMLParser):
         self.active = tag
         if tag == "th":
             self.is_last_row_header = True
-        for (key, value) in attrs:
+        for key, value in attrs:
             if key == "colspan":
                 self.colspan = int(value)
 
