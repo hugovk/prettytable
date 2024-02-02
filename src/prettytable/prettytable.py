@@ -35,6 +35,7 @@ from __future__ import annotations
 
 import io
 import re
+from functools import lru_cache
 from html.parser import HTMLParser
 from typing import Any
 
@@ -2421,7 +2422,8 @@ class PrettyTable:
 ##############################
 
 
-def _str_block_width(val):
+@lru_cache(maxsize=None)
+def _str_block_width(val: str) -> int:
     import wcwidth  # type: ignore[import-not-found]
 
     return wcwidth.wcswidth(_re.sub("", val))
