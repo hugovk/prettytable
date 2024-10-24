@@ -6,6 +6,7 @@
 [![GitHub Actions status](https://github.com/prettytable/prettytable/workflows/Test/badge.svg)](https://github.com/prettytable/prettytable/actions)
 [![codecov](https://codecov.io/gh/prettytable/prettytable/branch/main/graph/badge.svg)](https://codecov.io/gh/prettytable/prettytable)
 [![Code style: Black](https://img.shields.io/badge/code%20style-Black-000000.svg)](https://github.com/psf/black)
+[![Tidelift](https://tidelift.com/badges/package/pypi/prettytable)](https://tidelift.com/subscription/pkg/pypi-prettytable?utm_source=pypi-prettytable&utm_medium=badge)
 
 PrettyTable lets you print tables in an attractive ASCII form:
 

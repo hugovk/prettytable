@@ -37,6 +37,7 @@ optional-dependencies.tests = [
   "pytest-lazy-fixtures",
 ]
 urls.Changelog = "https://github.com/prettytable/prettytable/releases"
+urls.Funding = "https://tidelift.com/subscription/pkg/pypi-prettytable?utm_source=pypi-prettytable&utm_medium=pypi"
 urls.Homepage = "https://github.com/prettytable/prettytable"
 urls.Source = "https://github.com/prettytable/prettytable"
 
